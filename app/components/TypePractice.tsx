@@ -681,6 +681,7 @@ const TypePractice = (props: any) => {
                 {currSentence.split(/(?= )/).map((word: any, wi: any) => (
                   <div
                     className="word"
+                    key={wi}
                     ref={(currRef) => {
                       if (
                         !wordRefs.current.includes(currRef!) &&
@@ -692,11 +693,13 @@ const TypePractice = (props: any) => {
                   >
                     {word.split("").map((char: any, idx: any) => (
                       <div
+
                         className={`${
                           resolvedTheme === "dark"
                             ? "each-char-dark"
                             : "each-char-light"
                         }`}
+                        key={idx}
                         ref={(currRef) => {
                           if (
                             !charRefs.current.includes(currRef!) &&
