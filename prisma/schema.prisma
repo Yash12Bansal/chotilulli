@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model users_non_signed_up {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  user String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  currentStreak Int
+  maxStreak Int
+  highestWpm Int
+  practiceDates DateTime[]
+}
+
+model sentences {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  sentence String
+}
