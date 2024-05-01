@@ -67,11 +67,11 @@ const Motto = (props: any) => {
           </div>
           <div className="div-motto">
             <div className="motto-inside-divs-quote">
-              " Coders who don't know touch typing are not coders. "
+              Coders who do not know touch typing are not coders.
             </div>
             <div className="motto-inside-divs-quote">
-              " They are <span className="title-span">chOTi lUlli</span> coders.
-              "
+              They are <span className="title-span">chOTi lUlli</span> coders.
+              
             </div>
             <div className="motto-inside-divs-name">- Elon Musk</div>
           </div>
