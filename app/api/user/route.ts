@@ -78,7 +78,7 @@ function isDifferenceOneDay(date1: Date, date2: Date[]): boolean {
   return false;
 }
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET() {
   try{
     const prismaClient = new PrismaClient();
     const sentences = await prismaClient.sentences.findMany({});
