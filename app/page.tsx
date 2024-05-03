@@ -13,6 +13,10 @@ async function postUserDetails() {
 }
 export default async function Home() {
   const res = await postUserDetails();
+  console.log("this si the resss", res);
+  console.log("this si the resss daata", res.sentence);
+  console.log("this si the resss daata", res);
+
   return (
     <div>
       <div></div>
