@@ -1,52 +1,52 @@
-import os from "os";
-import crypto from "crypto";
+// import os from "os";
+// import crypto from "crypto";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 // Function to retrieve MAC address
-function getMacAddress() {
-  // Get network interfaces
-  const interfaces = os.networkInterfaces();
+// function getMacAddress() {
+//   // Get network interfaces
+//   const interfaces = os.networkInterfaces();
 
-  // Loop through interfaces to find the MAC address
-  for (const interfaceName in interfaces) {
-    const interfaceInfo = interfaces[interfaceName];
-    if (interfaceInfo) {
-      for (let info of interfaceInfo) {
-        if (!info.internal && info.mac) {
-          return info.mac;
-        }
-      }
-    }
-  }
-  // If MAC address not found, return a default value
-  return "unknown";
-}
+//   // Loop through interfaces to find the MAC address
+//   for (const interfaceName in interfaces) {
+//     const interfaceInfo = interfaces[interfaceName];
+//     if (interfaceInfo) {
+//       for (let info of interfaceInfo) {
+//         if (!info.internal && info.mac) {
+//           return info.mac;
+//         }
+//       }
+//     }
+//   }
+//   // If MAC address not found, return a default value
+//   return "unknown";
+// }
 
-// Function to generate a unique identifier based on MAC address and additional attributes
-function generateUniqueId() {
-  const macAddress = getMacAddress();
-  // const cpuId = os.cpus()[0].model;
-  // CPU ID
-  // const motherboardSerial = "some_serial";
-  // Motherboard serial number (if available)
+// // Function to generate a unique identifier based on MAC address and additional attributes
+// function generateUniqueId() {
+//   const macAddress = getMacAddress();
+//   // const cpuId = os.cpus()[0].model;
+//   // CPU ID
+//   // const motherboardSerial = "some_serial";
+//   // Motherboard serial number (if available)
 
-  // Combine MAC address, CPU ID, and motherboard serial number
-  // -${motherboardSerial}
-  // -${cpuId}
-  const combinedData = `${macAddress}`;
+//   // Combine MAC address, CPU ID, and motherboard serial number
+//   // -${motherboardSerial}
+//   // -${cpuId}
+//   const combinedData = `${macAddress}`;
 
-  // Hash the combined data using SHA-256
-  const hashedData = crypto
-    .createHash("sha256")
-    .update(combinedData)
-    .digest("hex");
+//   // Hash the combined data using SHA-256
+//   const hashedData = crypto
+//     .createHash("sha256")
+//     .update(combinedData)
+//     .digest("hex");
 
-  return hashedData;
+//   return hashedData;
 
-  // return Response.json({
-  //   id: hashedData,
-  // });
-}
+//   // return Response.json({
+//   //   id: hashedData,
+//   // });
+// }
 function isDifferenceOneDay(date1: Date, date2: Date[]): boolean {
   // Remove time component from both dates
   let f = false;
@@ -83,7 +83,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const sentences = await prismaClient.sentences.findMany({});
   const index = Math.floor(Math.random() * sentences.length);
 
-  const id = await generateUniqueId();
+  // const id = await generateUniqueId();
+  const id= Math.random().toString();
   const user = await prismaClient.users_non_signed_up.findUnique({
     where: {
       user: id,
