@@ -7,9 +7,9 @@ async function postUserDetails() {
   // const /response = await axios.get("https://api.ipify.org/?format=json");
   console.log("THIS IS THE ENV URL11  ", process.env.NEXT_PUBLIC_URL);
 
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`);
-  console.log("my sent", response.data.sentence);
-  return response.data;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user`);
+  const res = await response.json();
+  return res;
 }
 export default async function Home() {
   const res = await postUserDetails();
