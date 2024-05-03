@@ -79,75 +79,81 @@ function isDifferenceOneDay(date1: Date, date2: Date[]): boolean {
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const prismaClient = new PrismaClient();
-  const sentences = await prismaClient.sentences.findMany({});
-  const index = Math.floor(Math.random() * sentences.length);
-
-  // const id = await generateUniqueId();
-  const id= Math.random().toString();
-  const user = await prismaClient.users_non_signed_up.findUnique({
-    where: {
-      user: id,
-    },
-  });
-  if (!user) {
-    const user = await prismaClient.users_non_signed_up.create({
-      data: {
+  try{
+    const prismaClient = new PrismaClient();
+    const sentences = await prismaClient.sentences.findMany({});
+    const index = Math.floor(Math.random() * sentences.length);
+  
+    // const id = await generateUniqueId();
+    const id= Math.random().toString();
+    const user = await prismaClient.users_non_signed_up.findUnique({
+      where: {
         user: id,
-        currentStreak: 0,
-        maxStreak: 0,
-        highestWpm: 0,
-        practiceDates: [],
       },
     });
-    return NextResponse.json({
-      sentence: sentences[index],
-      user: user,
-      newUserCreated: true,
-    });
-
-    // return NextResponse.json(user);
-  } else {
-    // const lastPractice = user.lastPracticeDate;
-    // const currDate = new Date();
-    const currentDateUTC = new Date();
-
-    // Get the timezone offset in milliseconds
-    const timezoneOffsetMs = new Date().getTimezoneOffset() * 60000;
-
-    // Adjust the date by adding the timezone offset
-    const currDate = new Date(currentDateUTC.getTime() - timezoneOffsetMs);
-
-    const isStreakMaintained = await isDifferenceOneDay(
-      currDate,
-      user.practiceDates
-    );
-    let newCurrStreak;
-    if (isStreakMaintained) {
+    if (!user) {
+      const user = await prismaClient.users_non_signed_up.create({
+        data: {
+          user: id,
+          currentStreak: 0,
+          maxStreak: 0,
+          highestWpm: 0,
+          practiceDates: [],
+        },
+      });
       return NextResponse.json({
         sentence: sentences[index],
         user: user,
-        newUserCreated: false,
+        newUserCreated: true,
       });
+  
+      // return NextResponse.json(user);
     } else {
-      newCurrStreak = 0;
-      const newData = {
-        currentStreak: newCurrStreak,
-      };
-      const updatedStats = await prismaClient.users_non_signed_up.update({
-        where: { user: id },
-        data: newData,
-      });
-      console.log("updated stats backendd d d d ", updatedStats);
-      return NextResponse.json({
-        sentence: sentences[index],
-        user: updatedStats,
-        newUserCreated: false,
-      });
+      // const lastPractice = user.lastPracticeDate;
+      // const currDate = new Date();
+      const currentDateUTC = new Date();
+  
+      // Get the timezone offset in milliseconds
+      const timezoneOffsetMs = new Date().getTimezoneOffset() * 60000;
+  
+      // Adjust the date by adding the timezone offset
+      const currDate = new Date(currentDateUTC.getTime() - timezoneOffsetMs);
+  
+      const isStreakMaintained = await isDifferenceOneDay(
+        currDate,
+        user.practiceDates
+      );
+      let newCurrStreak;
+      if (isStreakMaintained) {
+        return NextResponse.json({
+          sentence: sentences[index],
+          user: user,
+          newUserCreated: false,
+        });
+      } else {
+        newCurrStreak = 0;
+        const newData = {
+          currentStreak: newCurrStreak,
+        };
+        const updatedStats = await prismaClient.users_non_signed_up.update({
+          where: { user: id },
+          data: newData,
+        });
+        console.log("updated stats backendd d d d ", updatedStats);
+        return NextResponse.json({
+          sentence: sentences[index],
+          user: updatedStats,
+          newUserCreated: false,
+        });
+      }
+  
+      // console.log(sentences);
+      // console.log("one sentence  ", sentences[index]);
     }
-
-    // console.log(sentences);
-    // console.log("one sentence  ", sentences[index]);
+  
+  }
+  catch(e){
+    console.log("YE RAHA MERA EXCEPTION CHAL AB RESOLVE KAR ISSE   ",e);
   }
 }
 // Example usage
