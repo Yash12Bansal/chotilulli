@@ -4,8 +4,8 @@ import { FiSun, FiMoon } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import sun from "../assets/img/sun.png";
-import moon from "../assets/img/moon.png";
+import sun from "../app/assets/img/sun.png";
+import moon from "../app/assets/img/moon.png";
 export default function ThemeSwitch(props: any) {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();

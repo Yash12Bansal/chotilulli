@@ -3,12 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import logoDark from "../assets/img/logoDark.png";
-import logoLight from "../assets/img/logoLight.png";
+import logoDark from "../app/assets/img/logoDark.png";
+import logoLight from "../app/assets/img/logoLight.png";
 import axios from "axios";
 import { ChartOptions } from "chart.js";
-import nextl from "../assets/img/forward_light.png";
-import nextd from "../assets/img/forward_dark.png";
+import nextl from "./app/assets/img/forward_light.png";
+import nextd from "./app/assets/img/forward_dark.png";
 import { useStopwatch } from "react-timer-hook";
 import {
   Chart,

@@ -6,21 +6,21 @@ import axios from "axios";
 import ThemeSwitch from "./ThemeSwitch";
 import Timer from "./Timer";
 import Stats from "./Stats";
-import contact from "../assets/img/contact.png";
-import terms from "../assets/img/note.png";
-import lock from "../assets/img/unlock.png";
+import contact from "../app/assets/img/contact.png";
+import terms from "../app/assets/img/note.png";
+import lock from "../app/assets/img/unlock.png";
 import { useTheme } from "next-themes";
-import wpmf from "../assets/img/wpm.png";
-import fire from "../assets/img/fire.png";
-import fire2 from "../assets/img/fire2.png";
-import wpm2 from "../assets/img/firewall2.png";
-import loop2 from "../assets/img/currStreak.png";
-import restartL from "../assets/img/reload_light.png";
-import restartD from "../assets/img/reload_dark.png";
-import loop from "../assets/img/currStreak.png";
+import wpmf from "../app/assets/img/wpm.png";
+import fire from "../app/assets/img/fire.png";
+import fire2 from "../app/assets/img/fire2.png";
+import wpm2 from "../app/assets/img/firewall2.png";
+import loop2 from "../app/assets/img/currStreak.png";
+import restartL from "../app/assets/img/reload_light.png";
+import restartD from "../app/assets/img/reload_dark.png";
+import loop from "../app/assets/img/currStreak.png";
 import Image from "next/image";
-import logoDark from "../assets/img/logoDark.png";
-import logoLight from "../assets/img/logoLight.png";
+import logoDark from "../app/assets/img/logoDark.png";
+import logoLight from "../app/assets/img/logoLight.png";
 import { Prosto_One } from "next/font/google";
 import Motto from "./Motto";
 
@@ -30,7 +30,7 @@ const TypePractice = (props: any) => {
     props.res.user.currentStreak
   );
   const [userMaxStreak, setUserMaxStreak] = useState(props.res.user.maxStreak);
-  const [showMotto, setShowMotto]=useState(props.res.newUserCreated);
+  const [showMotto, setShowMotto] = useState(props.res.newUserCreated);
   const [practiceStarted, setPracticeStarted] = useState(0);
 
   const caretRef = useRef<HTMLSpanElement>(null);
@@ -481,7 +481,7 @@ const TypePractice = (props: any) => {
       window.removeEventListener("resize", removeFocusOnWindowResize);
       document.removeEventListener("resize", removeFocusOnWindowResize);
     };
-  }, [practiceStarted,mounted]);
+  }, [practiceStarted, mounted]);
 
   return (
     <div
@@ -693,7 +693,6 @@ const TypePractice = (props: any) => {
                   >
                     {word.split("").map((char: any, idx: any) => (
                       <div
-
                         className={`${
                           resolvedTheme === "dark"
                             ? "each-char-dark"
@@ -864,7 +863,7 @@ const TypePractice = (props: any) => {
               </div>
             </div>
           </div>
-          {showMotto && <Motto gotItClick={loadNewSentence}/>}
+          {showMotto && <Motto gotItClick={loadNewSentence} />}
         </div>
       ) : (
         <Stats

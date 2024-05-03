@@ -1,26 +1,10 @@
 "use client";
 import React, { useRef } from "react";
 import { useState, useMemo, useEffect } from "react";
-import axios from "axios";
-import ThemeSwitch from "./ThemeSwitch";
-import Timer from "./Timer";
-import Stats from "./Stats";
-import contact from "../assets/img/contact.png";
-import terms from "../assets/img/note.png";
-import lock from "../assets/img/unlock.png";
 import { useTheme } from "next-themes";
-import wpmf from "../assets/img/wpm.png";
-import fire from "../assets/img/fire.png";
-import fire2 from "../assets/img/fire2.png";
-import wpm2 from "../assets/img/firewall2.png";
-import loop2 from "../assets/img/currStreak.png";
-import restartL from "../assets/img/reload_light.png";
-import restartD from "../assets/img/reload_dark.png";
-import loop from "../assets/img/currStreak.png";
 import Image from "next/image";
-import logoDark from "../assets/img/logoDark.png";
-import logoLight from "../assets/img/logoLight.png";
-import { Prosto_One } from "next/font/google";
+import logoDark from "../app/assets/img/logoDark.png";
+import logoLight from "../app/assets/img/logoLight.png";
 
 const Motto = (props: any) => {
   const { setTheme, resolvedTheme } = useTheme();
@@ -71,7 +55,6 @@ const Motto = (props: any) => {
             </div>
             <div className="motto-inside-divs-quote">
               They are <span className="title-span">chOTi lUlli</span> coders.
-              
             </div>
             <div className="motto-inside-divs-name">- Elon Musk</div>
           </div>
