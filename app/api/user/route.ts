@@ -2,13 +2,6 @@
 // import crypto from "crypto";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import Cors from "cors";
-
-// Initialize the cors middleware
-const cors = Cors({
-  methods: ["GET", "HEAD", "POST"], // Specify allowed methods
-  origin: "https://www.chotilulli.life", // Replace with your custom domain
-});
 // Function to retrieve MAC address
 // function getMacAddress() {
 //   // Get network interfaces
