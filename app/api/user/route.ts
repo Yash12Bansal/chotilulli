@@ -2,6 +2,13 @@
 // import crypto from "crypto";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import Cors from "cors";
+
+// Initialize the cors middleware
+const cors = Cors({
+  methods: ["GET", "HEAD", "POST"], // Specify allowed methods
+  origin: "https://www.chotilulli.life", // Replace with your custom domain
+});
 // Function to retrieve MAC address
 // function getMacAddress() {
 //   // Get network interfaces
@@ -79,13 +86,13 @@ function isDifferenceOneDay(date1: Date, date2: Date[]): boolean {
 }
 
 export async function GET() {
-  try{
+  try {
     const prismaClient = new PrismaClient();
     const sentences = await prismaClient.sentences.findMany({});
     const index = Math.floor(Math.random() * sentences.length);
-  
+
     // const id = await generateUniqueId();
-    const id= Math.random().toString();
+    const id = Math.random().toString();
     const user = await prismaClient.users_non_signed_up.findUnique({
       where: {
         user: id,
@@ -106,19 +113,19 @@ export async function GET() {
         user: user,
         newUserCreated: true,
       });
-  
+
       // return NextResponse.json(user);
     } else {
       // const lastPractice = user.lastPracticeDate;
       // const currDate = new Date();
       const currentDateUTC = new Date();
-  
+
       // Get the timezone offset in milliseconds
       const timezoneOffsetMs = new Date().getTimezoneOffset() * 60000;
-  
+
       // Adjust the date by adding the timezone offset
       const currDate = new Date(currentDateUTC.getTime() - timezoneOffsetMs);
-  
+
       const isStreakMaintained = await isDifferenceOneDay(
         currDate,
         user.practiceDates
@@ -146,14 +153,12 @@ export async function GET() {
           newUserCreated: false,
         });
       }
-  
+
       // console.log(sentences);
       // console.log("one sentence  ", sentences[index]);
     }
-  
-  }
-  catch(e){
-    console.log("YE RAHA MERA EXCEPTION CHAL AB RESOLVE KAR ISSE   ",e);
+  } catch (e) {
+    console.log("YE RAHA MERA EXCEPTION CHAL AB RESOLVE KAR ISSE   ", e);
   }
 }
 // Example usage

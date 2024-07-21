@@ -19,6 +19,7 @@
     "@prisma/client": "^5.11.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
+    "cors": "^2.8.5",
     "framer-motion": "^11.0.25",
     "jquery": "^3.7.1",
     "mongodb": "^6.5.0",
