@@ -5,7 +5,7 @@ export function middleware(req: NextRequest) {
   const res = NextResponse.next();
   res.headers.append(
     "ACCESS-CONTROL-ALLOW-ORIGIN",
-    "https://www.chotilulli.life"
+    "https://master.df9hpmuuw3z7a.amplifyapp.com/"
   );
 
   res.headers.append(
